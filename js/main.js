@@ -1,35 +1,23 @@
-let carts = document.querySelectorAll('.add-to-cart');
+let addtocart = document.querySelectorAll('.add-to-cart');
+console.log(addtocart);
 
-for (let i = 0; i < carts.length; i++) {
-   carts[i].addEventListener('click', ()=>{
-      cartNumbers();
-     
-   });
+for(let i = 0; i < addtocart.length; i++){
+addtocart[i].addEventListener("click", () => { 
+     productCount();
+ });
 }
 
 
-function onLoadCarts(){
-   let productNumbers = localStorage.getItem('cartNumbersKey');
-   
-   if(productNumbers){
-      document.querySelector('.cart-span').textContent = productNumbers;
-   }
-   
-}
-
-function cartNumbers(){
-   let productNumbers = localStorage.getItem('cartNumbersKey');
-   
+function productCount(){
+   let productNumbers = localStorage.getItem('cartNumbers')
    productNumbers = parseInt(productNumbers);
-
    if(productNumbers){
-      localStorage.setItem('cartNumbersKey', productNumbers + 1);
-      document.querySelector('.cart-span').textContent = productNumbers + 1;
+   	localStorage.setItem('cartNumbers', productNumbers + 1);
+   	document.querySelector('.cart-span').textContent = productNumbers + 1; 
    }else {
-      localStorage.setItem('cartNumbersKey', 1);
-      document.querySelector('.cart-span').textContent = 1;
+   	localStorage.setItem('cartNumbers', 1); 
+   	document.querySelector('.cart-span').textContent = 1;
    }
    
 }
 
-onLoadCarts();
